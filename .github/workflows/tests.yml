@@ -1,0 +1,13 @@
+on:
+  workflow_call
+  
+jobs:
+    integrationtests:
+        strategy:
+            fail-fast: false
+            matrix:
+                os: [ windows-2019, windows-2022 ]
+        runs-on: ${{ matrix.os }}
+        steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2

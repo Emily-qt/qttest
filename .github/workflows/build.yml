@@ -1,0 +1,18 @@
+name: Build package and run tests
+on:
+  workflow_call
+  
+env:
+  PACKAGE_NAME: LibEncrypt
+  PACKAGE_VERSION: master
+  CONAN_API_USER: conan
+
+jobs:
+  windows:
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Debug, Release]
+        os: [ windows-2019, windows-2022 ]
+    
+    
