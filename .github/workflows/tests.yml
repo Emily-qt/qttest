@@ -12,15 +12,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # 拉取完整仓库，避免部分文件缺失
 
       - name: Print working directory
-        run: pwd  # 确保我们在正确的目录下
+        run: pwd  # 打印当前工作目录
 
-      - name: List files (debugging)
+      - name: List files for debugging
         run: |
-          Get-ChildItem -Recurse  # 在 PowerShell 中递归列出所有文件，查看文件是否存在
+          Get-ChildItem -Recurse  # 列出所有文件，确认路径
 
       - name: Run test runner
-        run: python assignment/qttest/.github/workflows/testrunner.py  # 直接运行测试脚本
+        run: python assignment/qttest/.github/workflows/testrunner.py  # 确保路径正确
