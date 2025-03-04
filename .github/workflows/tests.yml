@@ -19,7 +19,8 @@ jobs:
         run: pwd  # 确保我们在正确的目录下
 
       - name: List all files (debugging)
-        run: dir /s  # 在 Windows runner 上列出所有文件，检查 requirements.txt 是否存在
+        run: |
+          Get-ChildItem -Recurse  # 在 PowerShell 中列出所有文件
 
       - name: Install dependencies
         run: python -m pip install -r .github/workflows/requirements.txt  # 确保路径正确
