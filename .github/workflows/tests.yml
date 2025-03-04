@@ -20,8 +20,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r assignment/integrationtests/requirements.txt  # 安装依赖项（如果有）check
+          pip install -r assignment/integrationtests/requirements.txt  # 安装依赖项（如果有）
 
       - name: Run test runner
         run: |
-          python C:\Users\xue6szh\Documents\Personal\Python\QAassignment\assignment\integrationtests\testrunner.py
+          python assignment/integrationtests/testrunner.py  # 使用相对路径
