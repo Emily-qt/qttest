@@ -14,9 +14,12 @@ def test_runner():
     temp_encrypted_file = tempfile.NamedTemporaryFile(delete=False).name
     password = 'securepassword111'
 
+    # Set the path to runner.exe
+    runner_path = os.path.join(os.path.dirname(__file__), 'runner.exe')
+
     try:
         # Call the runner executable to encrypt the file
-        subprocess.run(['./runner', 'encrypt', input_file_name, temp_encrypted_file, password], check=True)
+        subprocess.run([runner_path, 'encrypt', input_file_name, temp_encrypted_file, password], check=True)
 
         # Read the original data
         with open(input_file_name, 'rb') as original_file:
@@ -31,7 +34,7 @@ def test_runner():
 
         # Call the runner executable to decrypt the file
         temp_decrypted_file = tempfile.NamedTemporaryFile(delete=False).name
-        subprocess.run(['./runner', 'decrypt', temp_encrypted_file, temp_decrypted_file, password], check=True)
+        subprocess.run([runner_path, 'decrypt', temp_encrypted_file, temp_decrypted_file, password], check=True)
 
         # Read the decrypted data
         with open(temp_decrypted_file, 'rb') as decrypted_file:
