@@ -23,5 +23,5 @@ jobs:
         run: |
           Get-ChildItem -Recurse  # 在 PowerShell 中递归列出所有文件，确保文件存在
 
-      - name: Run test runner with absolute path
-        run: python C:/Users/xue6szh/Documents/Personal/Python/QAassignment/assignment/integrationtests/testrunner.py  # 使用绝对路径
+      - name: Run test runner with relative path
+        run: python assignment/integrationtests/testrunner.py  # 使用相对路径来访问
