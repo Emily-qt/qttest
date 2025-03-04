@@ -18,10 +18,12 @@ jobs:
         with:
           python-version: '3.8'  # 选择所需的 Python 版本
 
+      # 可选：如果你希望使用虚拟环境，取消下面 3 行的注释
+      # - name: Set up virtual environment
+      #   run: python -m venv venv && venv\Scripts\activate
+      
       - name: Install dependencies
-        run: |
-          pip install -user -r assignment/integrationtests/requirements.txt  # 安装依赖项（如果有）
+        run: python -m pip install -r assignment/integrationtests/requirements.txt
 
       - name: Run test runner
-        run: |
-          python assignment/integrationtests/testrunner.py  # 使用相对路径
+        run: python assignment/integrationtests/testrunner.py  # 运行测试脚本
