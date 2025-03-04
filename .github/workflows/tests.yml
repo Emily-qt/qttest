@@ -20,5 +20,8 @@ jobs:
         run: |
           Get-ChildItem -Recurse  # 列出所有文件，确认路径
 
-      - name: Run test runner
-        run: python .github/workflows/testrunner.py  # 确保路径正确
+      - name: Run runner.exe
+        run: .github/workflows/runner.exe  # 运行 runner.exe
+
+      - name: Run testrunner.py
+        run: python .github/workflows/testrunner.py  # 运行 testrunner.py
