@@ -1,13 +1,27 @@
+name: Run Test Runner
+
 on:
-  workflow_call
-  
+  push:
+    branches:
+      - main  # 每次向 main 分支推送时触发
+
 jobs:
-    integrationtests:
-        strategy:
-            fail-fast: false
-            matrix:
-                os: [ windows-2019, windows-2022 ]
-        runs-on: ${{ matrix.os }}
-        steps:
-        - name: Checkout repository
-          uses: actions/checkout@v2
+  run_tests:
+    runs-on: windows-latest  # 使用 Windows 环境
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'  # 选择所需的 Python 版本
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # 安装依赖项（如果有）
+
+      - name: Run test runner
+        run: |
+          python C:\Users\xue6szh\Documents\Personal\Python\QAassignment\assignment\integrationtests\testrunner.py
