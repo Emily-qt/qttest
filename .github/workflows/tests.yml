@@ -21,4 +21,4 @@ jobs:
           Get-ChildItem -Recurse  # 列出所有文件，确认路径
 
       - name: Run test runner
-        run: python qttest/.github/workflows/testrunner.py  # 确保路径正确
+        run: python .github/workflows/testrunner.py  # 确保路径正确
