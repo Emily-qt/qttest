@@ -16,12 +16,11 @@ jobs:
           fetch-depth: 0  # 拉取完整仓库，避免部分文件缺失
 
       - name: Print working directory
-        run: |
-          Get-Location  # 打印当前工作目录
+        run: pwd  # 确保我们在正确的目录下
 
       - name: List files (debugging)
         run: |
-          Get-ChildItem -Recurse  # 在 PowerShell 中递归列出所有文件，确保文件存在
+          Get-ChildItem -Recurse  # 在 PowerShell 中递归列出所有文件，查看文件是否存在
 
-      - name: Run test runner with relative path
-        run: python assignment/integrationtests/testrunner.py  # 使用相对路径来访问
+      - name: Run test runner
+        run: python C:\Users\xue6szh\Documents\Personal\Python\QAassignment\assignment\integrationtests\testrunner.py  # 直接运行测试脚本
