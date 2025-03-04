@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r assignment/integrationtests/requirements.txt  # 安装依赖项（如果有）
+          pip install -user -r assignment/integrationtests/requirements.txt  # 安装依赖项（如果有）
 
       - name: Run test runner
         run: |
