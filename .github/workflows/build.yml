@@ -16,3 +16,47 @@ jobs:
         os: [ windows-2019, windows-2022 ]
     
     
+name: Build package and run tests
+
+on:
+  workflow_call
+
+env:
+  PACKAGE_NAME: LibEncrypt
+  PACKAGE_VERSION: master
+  CONAN_API_USER: conan
+
+jobs:
+  windows:
+    strategy:
+      fail-fast: false
+      matrix:
+        configuration: [Debug, Release]
+        os: [windows-2019, windows-2022]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup MSVC
+        uses: microsoft/setup-msbuild@v1
+        with:
+          vsVersion: '16.0'  # Visual Studio 2019
+          
+      - name: Build with MSBuild
+        run: |
+          msbuild "${{ env.PACKAGE_NAME }}.sln" /p:Configuration=${{ matrix.configuration }}
+
+      - name: Setup MSVC for VS 2022
+        if: matrix.os == 'windows-2022'
+        uses: microsoft/setup-msbuild@v1
+        with:
+          vsVersion: '17.0'  # Visual Studio 2022
+          
+      - name: Build with MSBuild for VS 2022
+        if: matrix.os == 'windows-2022'
+        run: |
+          msbuild "${{ env.PACKAGE_NAME }}.sln" /p:Configuration=${{ matrix.configuration }}
+    
+    
