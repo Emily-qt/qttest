@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt  # 安装依赖项（如果有）
+          pip install -r requirements.txt  # 安装依赖项（如果有）check
 
       - name: Run test runner
         run: |
