@@ -16,14 +16,12 @@ jobs:
           fetch-depth: 0  # 拉取完整仓库，避免部分文件缺失
 
       - name: Print working directory
-        run: Get-Location  # PowerShell 中使用 Get-Location 打印当前工作目录
+        run: |
+          Get-Location  # 打印当前工作目录
 
       - name: List files (debugging)
         run: |
-          Get-ChildItem -Recurse  # 在 PowerShell 中递归列出所有文件，查看文件是否存在
+          Get-ChildItem -Recurse  # 在 PowerShell 中递归列出所有文件，确保文件存在
 
-      # - name: Install dependencies
-      #   run: python -m pip install -r requirements.txt  # 确保路径正确，这里假设 requirements.txt 在项目根目录下
-
-      - name: Run test runner
-        run: python assignment/integrationtests/testrunner.py  # 运行测试脚本
+      - name: Run test runner with absolute path
+        run: python C:/Users/xue6szh/Documents/Personal/Python/QAassignment/assignment/integrationtests/testrunner.py  # 使用绝对路径
