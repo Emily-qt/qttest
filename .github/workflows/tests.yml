@@ -23,4 +23,4 @@ jobs:
           Get-ChildItem -Recurse  # 在 PowerShell 中递归列出所有文件，查看文件是否存在
 
       - name: Run test runner
-        run: python C:\Users\xue6szh\Documents\Personal\Python\QAassignment\assignment\integrationtests\testrunner.py  # 直接运行测试脚本
+        run: python C:\Users\xue6szh\Documents\Personal\Python\QAassignment\assignment\qttest\.github\workflows\testrunner.py  # 直接运行测试脚本
