@@ -17,5 +17,5 @@ jobs:
     uses: ./.github/workflows/build.yml
 
   test_job:
-    needs: build_job
+    #needs: build_job
     uses: ./.github/workflows/tests.yml
