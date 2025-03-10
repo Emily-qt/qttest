@@ -1,23 +1,4 @@
 name: Build package and run tests
-on:
-  workflow_call
-  
-env:
-  PACKAGE_NAME: LibEncrypt
-  PACKAGE_VERSION: master
-  CONAN_API_USER: conan
-
-jobs:
-  windows:
-    strategy:
-      fail-fast: false
-      matrix:
-        configuration: [Debug, Release]
-        os: [ windows-2019, windows-2022 ]
-    
-    
-        
-name: Build package and run tests
 
 on:
   workflow_call
@@ -40,24 +21,26 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      # 使用 Windows 2019 或 Windows 2022 自动选择对应的 VS 版本
       - name: Setup MSVC
         uses: microsoft/setup-msbuild@v1
         with:
-          vsVersion: '16.0'  # Visual Studio 2019
-          
+          vsVersion: ${{ matrix.os == 'windows-2022' && '17.0' || '16.0' }}
+
+      # 使用 MSBuild 进行构建
       - name: Build with MSBuild
         run: |
           msbuild "${{ env.PACKAGE_NAME }}.sln" /p:Configuration=${{ matrix.configuration }}
 
-      - name: Setup MSVC for VS 2022
-        if: matrix.os == 'windows-2022'
-        uses: microsoft/setup-msbuild@v1
-        with:
-          vsVersion: '17.0'  # Visual Studio 2022
-          
-      - name: Build with MSBuild for VS 2022
-        if: matrix.os == 'windows-2022'
+      # 运行测试
+      - name: Run Tests
         run: |
-          msbuild "${{ env.PACKAGE_NAME }}.sln" /p:Configuration=${{ matrix.configuration }}
-    
-    
+          ctest --output-on-failure --build-config ${{ matrix.configuration }}
+
+      # 存储构建结果，供后续步骤使用
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-${{ matrix.os }}-${{ matrix.configuration }}
+          path: |
+            build/${{ matrix.configuration }}/**/*
