@@ -1,9 +1,10 @@
 name: Run Test Runner
 
 on:
-  push:
-    branches:
-      - main  # 每次向 main 分支推送时触发
+  #push:
+  #  branches:
+  #    - main  # 每次向 main 分支推送时触发
+  workflow_call
 
 jobs:
   run_tests:
