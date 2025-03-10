@@ -4,6 +4,7 @@ name: Building and testing
 on:
   push
   
+  
 permissions:
   actions: read
   checks: read
