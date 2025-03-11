@@ -3,7 +3,7 @@ name: Building and testing
 
 on:
   #push
-  
+  workflow_call
   
 permissions:
   actions: read
